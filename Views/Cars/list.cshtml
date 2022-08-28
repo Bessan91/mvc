@@ -1,0 +1,68 @@
+﻿@model List<project5.Models.Cars>
+
+@{
+
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>list</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#add").click(function () {
+                $("#cars option:selected").each(function () {
+                    $(this).appendTo("#CarSelected");
+
+                });
+            });
+            $("#remove").click(function () {
+                $("#CarSelected option:selected").each(function () {
+                    $(this).appendTo("#cars");
+
+                });
+            });
+        });
+    </script>
+    <style>
+        .Select-div {
+            width: 600px;
+            height: 200px;
+            border: 10px solid #ccc;
+            padding: 20px;
+        }
+
+        label {
+            font-size: 150%;
+        }
+        #CarSelected {
+            width: 200px;
+            height: 100px;
+        }
+     
+    </style>
+
+</head>
+<body>
+    <center>
+
+        <br /> <br /><br />
+                     <div class="Select-div">
+                         <label for="Cars">Choose a car:&nbsp;&nbsp;</label>
+                         @Html.DropDownList("cars", new SelectList(Model.Select(a=>a.Name)))
+                         <br><br>
+                         <input type="button" id="add" value="Add" />
+                         <br>
+                         <hr />
+                         <label for="Car">Cars:  </label>
+                         <select name="selectCar" id="CarSelected" multiple>
+                         </select>
+                         &nbsp;&nbsp;&nbsp;&nbsp;
+                         <input type="button" id="remove" value="Remove" />
+                     </div>
+    </center>
+</body>
+</html>
